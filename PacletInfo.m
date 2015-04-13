@@ -5,7 +5,9 @@
 Paclet[
   Name -> "DistMesh",
   Version -> "0.0.1",
-  MathematicaVersion -> "6+",
+  MathematicaVersion -> "10+",
   Extensions -> {
+	{"Application", Context -> "DistMesh`"},
     {"Documentation", Language -> "English"}
-}]
+  }
+]
