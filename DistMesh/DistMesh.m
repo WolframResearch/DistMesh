@@ -113,6 +113,12 @@ initialMeshPoints[{{x1_, x2_}, {y1_, y2_}, {z1_, z2_}}, h0_] := Module[
 validRDFQ[a_] := NumericQ[a]
 validRDFQ[___] := False
 
+DistMesh[ sr_?RegionQ, opts : OptionsPattern[DistMesh]] := 
+ Module[{nr},
+	nr = ToNumericalRegion[sr];
+	DistMesh[ nr, opts]
+ ]
+
 DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] := 
  Module[
   {maxIterations, iterationNumber, meshQualityFactor, 
