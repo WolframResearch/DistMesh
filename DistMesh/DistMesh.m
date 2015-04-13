@@ -27,7 +27,7 @@
 BeginPackage["DistMesh`", {"NDSolve`FEM`", "TriangleLink`", "TetGenLink`"}]
 
 ClearAll[DistMesh];
-DistMesh::usage = "DistMesh";
+DistMesh::usage = "DistMesh[r] creates an ElementMesh from a region r.";
 
 Options[DistMesh] = 
   Sort[Join[{MaxIterations -> 150, "MeshElementQualityFunction" -> Min, 
@@ -111,6 +111,12 @@ initialMeshPoints[{{x1_, x2_}, {y1_, y2_}, {z1_, z2_}}, h0_] := Module[
 
 validRDFQ[a_] := NumericQ[a]
 validRDFQ[___] := False
+
+DistMesh[ em_?ElementMeshQ, opts : OptionsPattern[DistMesh]] := 
+ Module[{nr},
+	nr = ToNumericalRegion[em];
+	DistMesh[ nr, opts]
+ ]
 
 DistMesh[ sr_?RegionQ, opts : OptionsPattern[DistMesh]] := 
  Module[{nr},
