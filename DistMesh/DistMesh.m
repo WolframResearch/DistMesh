@@ -30,10 +30,9 @@ ClearAll[DistMesh];
 DistMesh::usage = "DistMesh";
 
 Options[DistMesh] = 
-  Sort[Join[{MaxIterations -> 150, 
-     "MeshElementQualityFunction" -> Min, 
-     "ReturnBestMeshSofar" -> True, "ScaleDeriv" -> True, 
-     "DistMeshRefinementFunction" -> None}, Options[ToElementMesh]]];
+  Sort[Join[{MaxIterations -> 150, "MeshElementQualityFunction" -> Min, 
+     "ScaleDerivative" -> True, "DistMeshRefinementFunction" -> None},
+		Options[ToElementMesh]]];
 
 Begin["`Private`"]
 
@@ -141,7 +140,7 @@ DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] :=
   
   meshQualityFunction = OptionValue["MeshElementQualityFunction"];
   
-  saveBestMeshQ = TrueQ[OptionValue["ReturnBestMeshSofar"]];
+  saveBestMeshQ = True;
   
   pfix = N[OptionValue["IncludePoints"]];
   If[! MatrixQ[pfix, NumericQ], pfix = {}];
@@ -260,7 +259,7 @@ DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] :=
          p[[ix]] + ConstantArray[depsIM[[i]], {Length[p[[ix]]]}]] - 
         d[[ix]])/deps
     , {i, Last[ dgradDim]}];
-   If[ TrueQ[OptionValue["ScaleDeriv"]],
+   If[ TrueQ[OptionValue["ScaleDerivative"]],
     dgrad = Total[dgradN^2, {2}];
     (* dgrad could have zeros *)
     
