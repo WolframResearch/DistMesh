@@ -29,8 +29,12 @@ BeginPackage["DistMesh`", {"NDSolve`FEM`", "TriangleLink`", "TetGenLink`"}]
 ClearAll[DistMesh];
 DistMesh::usage = "DistMesh[r] creates an ElementMesh from a region r.";
 
+DistMesh::"bcond" = "`1` can not be used as predicate.";
+
+DistMesh::"bqal" = "The mesh quality goal of `1` could not be satitsfied. The current mesh has a quality of `2`. Increasing the number of \"MaxIterations\" or lowering the \"MeshQualityGoal\" may help."
+
 Options[DistMesh] = 
-  Sort[Join[{MaxIterations -> 150, "MeshElementQualityFunction" -> Min, 
+  Sort[Join[{MaxIterations -> 150, "MeshQualityFunction" -> Min, 
      "ScaleDerivative" -> True, "DistMeshRefinementFunction" -> None},
 		Options[ToElementMesh]]];
 
@@ -144,7 +148,7 @@ DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] :=
   If[! NumericQ[meshQualityFactor], meshQualityFactor = 0.5];
   meshQualityFactor = Min[1, Max[0, meshQualityFactor]];
   
-  meshQualityFunction = OptionValue["MeshElementQualityFunction"];
+  meshQualityFunction = OptionValue["MeshQualityFunction"];
   
   saveBestMeshQ = True;
   
@@ -275,11 +279,10 @@ DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] :=
     ];
    
    (* due to wrong ordering incident ordering may be negative *)
-   
    mq = meshQualityFunction[
      NDSolve`FEM`MeshElementQuality[ 
       NDSolve`FEM`GetElementCoordinates[p, t]]];
-   
+
    If[(mq >= meshQualityFactor), Break[];];
    
    If[saveBestMeshQ && mq > mqMax,
@@ -294,8 +297,6 @@ DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] :=
    If[maxf < dptol*h0, Break[]];
    
    If[iterationNumber >= maxIterations,
-    (* iterationNumber\[GreaterEqual] maxIterations && mq < 
-    meshQualityFactor \[Rule] message *)
     
     If[ saveBestMeshQ && mq <= mqMax && tBest =!= $Failed,
      mq = mqMax; p = pBest; t = tBest; 
@@ -305,8 +306,8 @@ DistMesh[ nr_NumericalRegion, opts : OptionsPattern[DistMesh]] :=
    
    ];
   
-  If[mq < meshQualityFactor, 
-   Message[DistMesh::bqal, meshQualityFactor, mq]
+  If[ mq < meshQualityFactor, 
+   Message[DistMesh::"bqal", meshQualityFactor, mq]
    ];
   
   (*Print["it num: ", iterationNumber, "  mq: ", mq];*)
