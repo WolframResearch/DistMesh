@@ -31,7 +31,7 @@ DistMesh::usage = "DistMesh[r] creates an ElementMesh from a region r.";
 
 DistMesh::"bcond" = "`1` can not be used as predicate.";
 
-DistMesh::"bqal" = "The mesh quality goal of `1` could not be satitsfied. The current mesh has a quality of `2`. Increasing the number of \"MaxIterations\" or lowering the \"MeshQualityGoal\" may help."
+DistMesh::"bqal" = "The mesh quality goal of `1` could not be satisfied. The current mesh has a quality of `2`. Increasing the number of \"MaxIterations\" or lowering the \"MeshQualityGoal\" may help."
 
 Options[DistMesh] = 
   Sort[Join[{MaxIterations -> 150, "MeshQualityFunction" -> Min, 
