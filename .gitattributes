@@ -1,0 +1,2 @@
+# Make notebook files binary, because merging can destroy their structure
+*.nb binary
