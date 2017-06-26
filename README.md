@@ -6,7 +6,7 @@ Author: Oliver Ruebenkoenig
 This software is based on the work of Per-Olof Persson and Gilbert
 Strang: http://persson.berkeley.edu/distmesh/
 
-[![View notebooks](https://www.wolframcloud.com/objects/user-fcd49e54-a538-4c96-b83c-283763b842da/dev/WDV/badge2.png)](https://www.wolframcloud.com/objects/user-fcd49e54-a538-4c96-b83c-283763b842da/dev/WDV/wdv_api?user=WolframResearch&repo=DistMesh&branch=master)
+[![View notebooks](https://wolfr.am/lA6mO5hv)](https://wolfr.am/mI7pFsTH)
 
 ### Introduction
 This is a Wolfram Language port of [*DistMesh*](http://persson.berkeley.edu/distmesh/) and licensed under GPL v2.0
