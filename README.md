@@ -1,6 +1,6 @@
 ## DistMesh - Wolfram Language Implementation
 
-DistMesh has been merged into [FEMAddons](https://github.com/WolframResearch/FEMAddOns). Please use [FEMAddons](https://github.com/WolframResearch/FEMAddOns) from now on, especially pull request, fixes etc should be made against [FEMAddons](https://github.com/WolframResearch/FEMAddOns).
+DistMesh has been merged into [FEMAddOns](https://github.com/WolframResearch/FEMAddOns). Please use [FEMAddOns](https://github.com/WolframResearch/FEMAddOns) from now on, especially pull request, fixes etc should be made against [FEMAddOns](https://github.com/WolframResearch/FEMAddOns).
 
 #### Copyright (c) 2015 Wolfram Research, Inc.  All rights reserved.
 
